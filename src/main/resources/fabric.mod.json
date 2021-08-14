@@ -1,0 +1,27 @@
+{
+  "schemaVersion": 1,
+  "id": "set-bonuses",
+  "version": "${version}",
+  "name": "Set Bonuses",
+  "description": "Set bonuses, armor and tool improvements & tweaks",
+  "authors": [
+    "CodedSakura"
+  ],
+  "contact": {},
+  "license": "ISC",
+  "icon": "assets/set-bonuses/icon.png",
+  "environment": "*",
+  "entrypoints": {
+    "main": [
+      "eu.codedsakura.setbonuses.SetBonuses"
+    ]
+  },
+  "mixins": [
+    "set-bonuses.mixins.json"
+  ],
+  "depends": {
+    "fabricloader": ">=0.11.6",
+    "fabric": "*",
+    "minecraft": "1.17.x"
+  }
+}
