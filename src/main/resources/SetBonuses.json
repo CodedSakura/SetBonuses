@@ -1,0 +1,42 @@
+{
+  "enchantments": {
+    "enabled": true,
+    "list": [
+      {
+        "id": "set-bonus:resistance",
+        "name": "Resistance",
+        "levels": 3,
+        "toggleable": false,
+        "slots": ["HEAD", "CHEST", "LEGS", "FEET"],
+        "effects": ["minecraft:resistance"]
+      }, {
+        "id": "set-bonus:night-vision",
+        "name": "Night Vision",
+        "levels": 1,
+        "slots": ["HEAD"],
+        "effects": ["minecraft:night_vision"]
+      }, {
+        "enabled": false,
+        "id": "set-bonus:speed",
+        "name": "speed",
+        "levels": 3,
+        "slots": ["FEET"],
+        "effects": ["minecraft:speed"]
+      }
+    ]
+  },
+  "set-bonuses": {
+    "enabled": true,
+    "list": [
+      {
+        "id": "set-bonus:netherite-fire-resistance",
+        "partial": "REDUCED",
+        "effects": ["minecraft:fire-resistance"]
+      }, {
+        "id": "set-bonus:leather-though",
+        "partial": "OFF",
+        "toughness": 2
+      }
+    ]
+  }
+}
