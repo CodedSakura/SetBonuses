@@ -4,6 +4,10 @@
   "package": "eu.codedsakura.setbonuses.mixin",
   "compatibilityLevel": "JAVA_8",
   "mixins": [
+    "PlayerClickSlotMixin",
+    "PlayerEquipStackMixin",
+    "PlayerTransferSlotMixin",
+    "accessors.ScreenHandlerAccessor"
   ],
   "client": [
   ],

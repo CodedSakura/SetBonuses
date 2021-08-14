@@ -1,11 +1,11 @@
 package eu.codedsakura.setbonuses.config;
 
 public class ConfigSetBonus {
-    boolean enabled;
-    String id;
-    String[] effects;
-    float toughness;
-    Partial partial = Partial.OFF;
+    public boolean enabled = true;
+    public String id;
+    public String[] effects;
+    public float toughness = 0;
+    public Partial partial = Partial.OFF;
 
     public enum Partial {
         OFF, REDUCED

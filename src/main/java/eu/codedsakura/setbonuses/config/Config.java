@@ -9,11 +9,11 @@ public class Config {
     public SetBonuses setBonuses;
 
     public static class Enchantments {
-        boolean enabled;
-        ConfigEnchant[] list;
+        public boolean enabled;
+        public ConfigEnchant[] list;
     }
     public static class SetBonuses {
-        boolean enabled;
-        ConfigSetBonus[] list;
+        public boolean enabled;
+        public ConfigSetBonus[] list;
     }
 }
