@@ -22,6 +22,8 @@ public class SetBonuses implements ModInitializer {
             }
         }
 
-        EnchantmentFactory.register();
+        if (CONFIG.enchantments.enabled) {
+            EnchantmentFactory.register();
+        }
     }
 }

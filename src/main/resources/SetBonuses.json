@@ -38,6 +38,7 @@
           "increment": 15,
           "delta": 20
         },
+        "treasure": true,
         "rarity": "RARE",
         "slots": ["FEET"],
         "target": "ARMOR_FEET",
@@ -47,7 +48,7 @@
       }
     ]
   },
-  "set-bonuses": {
+  "setBonuses": {
     "enabled": true,
     "list": [
       {

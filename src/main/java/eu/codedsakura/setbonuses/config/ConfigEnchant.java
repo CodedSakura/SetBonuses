@@ -9,6 +9,10 @@ public class ConfigEnchant {
     public String id;
     public int levels = 1;
     public boolean toggleable = true;
+    public boolean treasure = false;
+    public boolean cursed = false;
+    public boolean forEnchantedBook = true;
+    public boolean forRandomSelection = true;
     public EquipmentSlot[] slots = new EquipmentSlot[] {EquipmentSlot.HEAD, EquipmentSlot.CHEST, EquipmentSlot.LEGS, EquipmentSlot.FEET};
     public EnchantmentTarget target = EnchantmentTarget.ARMOR;
     public Enchantment.Rarity rarity = Enchantment.Rarity.UNCOMMON;
