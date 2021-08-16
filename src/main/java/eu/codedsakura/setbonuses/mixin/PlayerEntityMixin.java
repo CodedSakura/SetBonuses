@@ -4,9 +4,11 @@ import eu.codedsakura.setbonuses.EnchantmentFactory;
 import eu.codedsakura.setbonuses.SetBonuses;
 import eu.codedsakura.setbonuses.VirtualEnchantment;
 import eu.codedsakura.setbonuses.config.ConfigEnchant;
+import eu.codedsakura.setbonuses.IPlayerEnchantmentToggle;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.text.LiteralText;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.registry.Registry;
 import org.spongepowered.asm.mixin.Mixin;
@@ -20,9 +22,10 @@ import java.util.Random;
 import static eu.codedsakura.setbonuses.SetBonuses.CONFIG;
 
 @Mixin(PlayerEntity.class)
-public abstract class PlayerEntityMixin {
+public abstract class PlayerEntityMixin implements IPlayerEnchantmentToggle {
     private final int offset = new Random().nextInt(CONFIG.updateInterval);
     private final HashSet<String> enchantmentEffects = new HashSet<>();
+    public final HashSet<String> disabledEnchantments = new HashSet<>();
 
     private int lastHash = 0;
 
@@ -48,7 +51,7 @@ public abstract class PlayerEntityMixin {
         HashSet<String> currentEffects = new HashSet<>();
 
         for (VirtualEnchantment enchant : EnchantmentFactory.enchantments) {
-            if (enchant.enchant.effects.length != 0) {
+            if (enchant.enchant.effects.length != 0 && !disabledEnchantments.contains(enchant.enchant.id)) {
                 int effectStrength = 0;
                 switch (enchant.enchant.stacking) {
                     case MAX:
@@ -84,5 +87,17 @@ public abstract class PlayerEntityMixin {
 
         enchantmentEffects.clear();
         enchantmentEffects.addAll(currentEffects);
+    }
+
+    @Override
+    public void toggle(String name) {
+        if (disabledEnchantments.contains(name)) {
+            disabledEnchantments.remove(name);
+            ((PlayerEntity) (Object) this).sendMessage(new LiteralText(name + " enabled!"), false);
+        } else {
+            disabledEnchantments.add(name);
+            ((PlayerEntity) (Object) this).sendMessage(new LiteralText(name + " disabled!"), false);
+        }
+        updateEnchantEffects();
     }
 }

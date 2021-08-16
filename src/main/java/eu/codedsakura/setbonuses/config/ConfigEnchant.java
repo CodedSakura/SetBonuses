@@ -30,7 +30,7 @@ public class ConfigEnchant {
     }
     public static class Effect {
         public String id;
-        public int duration = 10;
+        public int duration = 210;
         public boolean ambient = false;
         public boolean showParticles = false;
         public boolean showIcon = true;

@@ -27,7 +27,7 @@
         "target": "ARMOR_HEAD",
         "effects": [{
           "id": "minecraft:night_vision",
-          "duration": 250
+          "duration": 210
         }]
       }, {
         "enabled": false,
@@ -40,8 +40,8 @@
         },
         "treasure": true,
         "rarity": "RARE",
-        "slots": ["FEET"],
-        "target": "ARMOR_FEET",
+        "slots": ["LEGS"],
+        "target": "ARMOR_LEGS",
         "effects": [{
           "id": "minecraft:speed"
         }]
