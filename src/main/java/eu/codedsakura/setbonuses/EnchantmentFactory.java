@@ -1,7 +1,6 @@
 package eu.codedsakura.setbonuses;
 
 import eu.codedsakura.setbonuses.config.ConfigEnchant;
-import net.minecraft.enchantment.EnchantmentTarget;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.registry.Registry;
 
@@ -19,23 +18,7 @@ public class EnchantmentFactory {
         for (ConfigEnchant enchant : CONFIG.enchantments.list) {
             if (!enchant.enabled) continue;
             logger.info("[Set Bonuses] (Enchantments) Registering {}", enchant.id);
-            VirtualEnchantment enchantment = Registry.register(Registry.ENCHANTMENT, Identifier.tryParse(enchant.id),
-                    new VirtualEnchantment(enchant.rarity, EnchantmentTarget.ARMOR, enchant.slots) {
-                        @Override
-                        public int getMinPower(int level) {
-                            return enchant.power.base + (level - 1) * enchant.power.increment;
-                        }
-
-                        @Override
-                        public int getMaxPower(int level) {
-                            return getMinPower(level) + enchant.power.delta;
-                        }
-
-                        @Override
-                        public int getMaxLevel() {
-                            return enchant.levels;
-                        }
-                    });
+            VirtualEnchantment enchantment = Registry.register(Registry.ENCHANTMENT, Identifier.tryParse(enchant.id), new VirtualEnchantment(enchant));
             enchantments.add(enchantment);
         }
 

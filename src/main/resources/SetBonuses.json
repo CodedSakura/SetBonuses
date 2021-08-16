@@ -11,8 +11,10 @@
           "delta": 30
         },
         "toggleable": false,
-        "slots": ["HEAD", "CHEST", "LEGS", "FEET"],
-        "effects": ["minecraft:resistance"]
+        "effects": [{
+          "id": "minecraft:resistance",
+          "stacking": "ADDITIVE"
+        }]
       }, {
         "id": "set-bonus:night-vision",
         "levels": 1,
@@ -22,7 +24,11 @@
         },
         "rarity": "COMMON",
         "slots": ["HEAD"],
-        "effects": ["minecraft:night_vision"]
+        "target": "ARMOR_HEAD",
+        "effects": [{
+          "id": "minecraft:night_vision",
+          "duration": 250
+        }]
       }, {
         "enabled": false,
         "id": "set-bonus:speed",
@@ -34,7 +40,10 @@
         },
         "rarity": "RARE",
         "slots": ["FEET"],
-        "effects": ["minecraft:speed"]
+        "target": "ARMOR_FEET",
+        "effects": [{
+          "id": "minecraft:speed"
+        }]
       }
     ]
   },

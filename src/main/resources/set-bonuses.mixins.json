@@ -5,7 +5,7 @@
   "compatibilityLevel": "JAVA_8",
   "mixins": [
     "PlayerClickSlotMixin",
-    "PlayerEquipStackMixin",
+    "PlayerEntityMixin",
     "PlayerTransferSlotMixin",
     "accessors.ScreenHandlerAccessor"
   ],
