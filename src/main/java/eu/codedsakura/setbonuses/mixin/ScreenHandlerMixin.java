@@ -2,7 +2,6 @@ package eu.codedsakura.setbonuses.mixin;
 
 import eu.codedsakura.setbonuses.EnchantmentFactory;
 import eu.codedsakura.setbonuses.IPlayerEnchantmentToggle;
-import eu.codedsakura.setbonuses.SetBonuses;
 import eu.codedsakura.setbonuses.VirtualEnchantment;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.player.PlayerEntity;
@@ -29,7 +28,6 @@ public class ScreenHandlerMixin {
                     for (VirtualEnchantment enchant : EnchantmentFactory.enchantments) {
                         if (enchant.enchant.toggleable && enchant.enchant.effects.length != 0
                                 && EnchantmentHelper.getLevel(enchant, stack) > 0) {
-                            SetBonuses.logger.info("toggle {}", enchant.enchant.id);
                             ((IPlayerEnchantmentToggle) player).toggle(enchant.enchant.id);
                         }
                     }

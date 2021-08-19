@@ -40,10 +40,36 @@
         },
         "treasure": true,
         "rarity": "RARE",
-        "slots": ["LEGS"],
         "target": "ARMOR_LEGS",
         "effects": [{
           "id": "minecraft:speed"
+        }]
+      }, {
+        "id": "set-bonus:slow-fall",
+        "levels": 1,
+        "power": {
+          "base": 20,
+          "increment": 15,
+          "delta": 20
+        },
+        "rarity": "RARE",
+        "target": "ARMOR_FEET",
+        "effects": [{
+          "id": "minecraft:slow_falling"
+        }]
+      }, {
+        "id": "set-bonus:jump_boost",
+        "levels": 3,
+        "power": {
+          "base": 20,
+          "increment": 15,
+          "delta": 20
+        },
+        "treasure": true,
+        "rarity": "RARE",
+        "target": "ARMOR_FEET",
+        "effects": [{
+          "id": "minecraft:jump_boost"
         }]
       }
     ]
@@ -58,7 +84,11 @@
       }, {
         "id": "set-bonus:leather-though",
         "partial": "OFF",
-        "toughness": 2
+        "toughness": 4
+      }, {
+        "id": "set-bonus:gold-light",
+        "partial": "OFF",
+        "effects": ["minecraft:swiftness"]
       }
     ]
   }

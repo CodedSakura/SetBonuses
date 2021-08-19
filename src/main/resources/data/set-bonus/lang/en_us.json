@@ -1,5 +1,7 @@
 {
   "enchantment.set-bonus.resistance": "Resistance",
   "enchantment.set-bonus.night-vision": "Night Vision",
-  "enchantment.set-bonus.speed": "Speed"
+  "enchantment.set-bonus.speed": "Speed",
+  "set-bonus.enchantment.enabled": "enabled!",
+  "set-bonus.enchantment.disabled": "disabled!"
 }

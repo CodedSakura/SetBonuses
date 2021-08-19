@@ -3,7 +3,10 @@ package eu.codedsakura.setbonuses;
 import eu.codedsakura.setbonuses.config.ConfigEnchant;
 import eu.pb4.polymer.interfaces.VirtualObject;
 import net.minecraft.enchantment.Enchantment;
+import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.text.MutableText;
 import net.minecraft.text.Text;
+import xyz.nucleoid.packettweaker.PacketContext;
 
 public class VirtualEnchantment extends Enchantment implements VirtualObject {
     public final ConfigEnchant enchant;
@@ -50,6 +53,13 @@ public class VirtualEnchantment extends Enchantment implements VirtualObject {
 
     @Override
     public Text getName(int level) {
-        return super.getName(level);
+        MutableText text = super.getName(level).shallowCopy();
+        PlayerEntity player = PacketContext.get().getTarget();
+        if (player != null) {
+            if (((IPlayerEnchantmentToggle) player).isDisabled(this.enchant.id)) {
+                text = text.styled(v -> v.withStrikethrough(true));
+            }
+        }
+        return text;
     }
 }
