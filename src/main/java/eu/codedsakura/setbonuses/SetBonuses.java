@@ -22,6 +22,10 @@ public class SetBonuses implements ModInitializer {
             }
         }
 
+        logger.info("[Set Bonuses] Verifying the config...");
+        CONFIG.verify();
+        logger.info("[Set Bonuses] Config successfully verified!");
+
         if (CONFIG.enchantments.enabled) {
             EnchantmentFactory.register();
         }

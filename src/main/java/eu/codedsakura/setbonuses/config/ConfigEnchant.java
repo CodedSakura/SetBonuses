@@ -3,6 +3,8 @@ package eu.codedsakura.setbonuses.config;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.EnchantmentTarget;
 import net.minecraft.entity.EquipmentSlot;
+import net.minecraft.util.Identifier;
+import net.minecraft.util.registry.Registry;
 
 public class ConfigEnchant {
     public boolean enabled = true;
@@ -34,5 +36,24 @@ public class ConfigEnchant {
         public boolean ambient = false;
         public boolean showParticles = false;
         public boolean showIcon = true;
+
+        protected void verify() {
+            if (Identifier.tryParse(id) == null) throw new NullPointerException("Effect ID is null!");
+            if (Registry.STATUS_EFFECT.get(Identifier.tryParse(id)) == null) throw new NullPointerException("Effect not found!");
+        }
+    }
+
+    public void verify() {
+        if (id == null) throw new NullPointerException("ID is null!");
+        if (slots.length == 0) throw new NullPointerException("Specify at least one slot!");
+        for (EquipmentSlot slot : slots) {
+            if (slot == null) throw new NullPointerException("EquipmentSlot is null!");
+        }
+        if (target == null) throw new NullPointerException("Target is null!");
+        if (rarity == null) throw new NullPointerException("Rarity is null!");
+        if (power == null) throw new NullPointerException("Power is null!");
+        if (stacking == null) throw new NullPointerException("Stacking is null!");
+        if (effects == null) effects = new Effect[0];
+        for (Effect effect : effects) effect.verify();
     }
 }

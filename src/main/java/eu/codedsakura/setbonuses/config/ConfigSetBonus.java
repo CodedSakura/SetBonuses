@@ -49,4 +49,11 @@ public class ConfigSetBonus {
     public static class Effect extends ConfigEnchant.Effect {
         public int strength = 0;
     }
+
+    public void verify() {
+        if (effects == null) effects = new Effect[0];
+        for (Effect effect : effects) effect.verify();
+        if (partial == null) throw new NullPointerException("Partial is null!");
+        if (material == null) throw new NullPointerException("Material is null!");
+    }
 }
