@@ -18,7 +18,7 @@ public class ConfigEnchant {
     public Enchantment.Rarity rarity = Enchantment.Rarity.UNCOMMON;
     public Power power = new Power();
     public Stacking stacking = Stacking.MAX;
-    public Effect[] effects;
+    public Effect[] effects = new Effect[0];
 
     public enum Stacking {
         MAX, ADDITIVE, MULTIPLICATIVE

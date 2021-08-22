@@ -78,17 +78,16 @@
     "enabled": true,
     "list": [
       {
-        "id": "set-bonus:netherite-fire-resistance",
-        "partial": "REDUCED",
-        "effects": ["minecraft:fire-resistance"]
+        "material": "NETHERITE",
+        "partial": "REDUCED_3",
+        "effects": [{
+          "id": "minecraft:fire_resistance",
+          "strength": 1
+        }]
       }, {
-        "id": "set-bonus:leather-though",
+        "material": "LEATHER",
         "partial": "OFF",
         "toughness": 4
-      }, {
-        "id": "set-bonus:gold-light",
-        "partial": "OFF",
-        "effects": ["minecraft:swiftness"]
       }
     ]
   }
