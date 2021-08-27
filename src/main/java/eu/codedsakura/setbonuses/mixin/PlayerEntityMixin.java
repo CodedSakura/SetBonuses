@@ -155,7 +155,7 @@ public class PlayerEntityMixin implements IPlayerEntityDuck {
 
             armorBuffs[0] += setBonus.protection * pieceCount;
             armorBuffs[1] += setBonus.toughness * pieceCount;
-            armorBuffs[2] += setBonus.knockbackResistance * pieceCount;
+            armorBuffs[2] += setBonus.knockbackResistance * pieceCount / 10f;
         }
 
         for (String prevEffect : setBonusEffects) {
@@ -206,6 +206,6 @@ public class PlayerEntityMixin implements IPlayerEntityDuck {
 
     @Override
     public float getAddKnockbackResistance() {
-        return armorBuffs[2] / 10f;
+        return armorBuffs[2];
     }
 }
