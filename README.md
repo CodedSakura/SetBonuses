@@ -22,7 +22,7 @@ Root:
 &gt; `list`: [ConfigSetBonus](#configsetbonus)[] = `[]`
 
 ### ConfigEnchantment
-[Source](https://github.com/CodedSakura/SetBonuses/blob/4099212dca59880abad6d5c3303a7c5542fde271/src/main/java/eu/codedsakura/setbonuses/config/ConfigEnchant.java#L9)
+[Source](https://github.com/CodedSakura/SetBonuses/blob/873ed931ca72a73d6d0cdda353c3b85a420d95db/src/main/java/eu/codedsakura/setbonuses/config/ConfigEnchant.java#L9)
 
 `enabled`: boolean = `true`    
 `id`: string [**Required!**]  
@@ -51,7 +51,7 @@ Root:
 (valid values: `"LEATHER"`, `"CHAIN"`, `"IRON"`, `"GOLD"`, `"DIAMOND"`, `"TURTLE"`, `"NETHERITE"`)
 
 ### ConfigSetBonus
-[Source](https://github.com/CodedSakura/SetBonuses/blob/4099212dca59880abad6d5c3303a7c5542fde271/src/main/java/eu/codedsakura/setbonuses/config/ConfigSetBonus.java#L7)
+[Source](https://github.com/CodedSakura/SetBonuses/blob/873ed931ca72a73d6d0cdda353c3b85a420d95db/src/main/java/eu/codedsakura/setbonuses/config/ConfigSetBonus.java#L7)
 
 `enabled`: boolean = `true`  
 `effect`: [] = `[]` - array of potion effects  
