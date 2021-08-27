@@ -58,7 +58,7 @@
           "id": "minecraft:slow_falling"
         }]
       }, {
-        "id": "set-bonus:jump_boost",
+        "id": "set-bonus:jump-boost",
         "levels": 3,
         "power": {
           "base": 20,
@@ -70,6 +70,15 @@
         "target": "ARMOR_FEET",
         "effects": [{
           "id": "minecraft:jump_boost"
+        }]
+      }, {
+        "id": "set-bonus:netherite-haste",
+        "levels": 1,
+        "treasure": true,
+        "rarity": "RARE",
+        "target": "ARMOR_CHEST",
+        "effects": [{
+          "id": "minecraft:haste"
         }]
       }
     ]
@@ -84,10 +93,18 @@
           "id": "minecraft:fire_resistance",
           "strength": 1
         }]
+      },
+      {
+        "material": "NETHERITE",
+        "partial": "OFF",
+        "effects": [{
+          "id": "minecraft:haste",
+          "strength": 1
+        }]
       }, {
         "material": "LEATHER",
         "partial": "OFF",
-        "toughness": 4
+        "toughness": 2.0
       }
     ]
   }

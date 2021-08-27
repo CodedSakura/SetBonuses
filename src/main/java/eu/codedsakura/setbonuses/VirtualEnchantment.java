@@ -1,6 +1,7 @@
 package eu.codedsakura.setbonuses;
 
 import eu.codedsakura.setbonuses.config.ConfigEnchant;
+import eu.codedsakura.setbonuses.ducks.IPlayerEntityDuck;
 import eu.pb4.polymer.interfaces.VirtualObject;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.entity.player.PlayerEntity;
@@ -56,7 +57,7 @@ public class VirtualEnchantment extends Enchantment implements VirtualObject {
         MutableText text = super.getName(level).shallowCopy();
         PlayerEntity player = PacketContext.get().getTarget();
         if (player != null) {
-            if (((IPlayerEnchantmentToggle) player).isDisabled(this.enchant.id)) {
+            if (((IPlayerEntityDuck) player).isDisabled(this.enchant.id)) {
                 text = text.styled(v -> v.withStrikethrough(true));
             }
         }

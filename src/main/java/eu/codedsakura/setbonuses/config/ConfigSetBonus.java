@@ -8,6 +8,8 @@ public class ConfigSetBonus {
     public boolean enabled = true;
     public Effect[] effects = new Effect[0];
     public float toughness = 0;
+    public float protection = 0;
+    public float knockbackResistance = 0;
     public Partial partial = Partial.OFF;
     public ArmorMaterials material;
 

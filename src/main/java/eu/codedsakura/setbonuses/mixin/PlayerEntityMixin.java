@@ -1,11 +1,12 @@
 package eu.codedsakura.setbonuses.mixin;
 
 import eu.codedsakura.setbonuses.EnchantmentFactory;
-import eu.codedsakura.setbonuses.IPlayerEnchantmentToggle;
 import eu.codedsakura.setbonuses.VirtualEnchantment;
 import eu.codedsakura.setbonuses.config.ConfigEnchant;
 import eu.codedsakura.setbonuses.config.ConfigSetBonus;
+import eu.codedsakura.setbonuses.ducks.IPlayerEntityDuck;
 import net.minecraft.enchantment.EnchantmentHelper;
+import net.minecraft.entity.attribute.EntityAttributes;
 import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ArmorItem;
@@ -23,13 +24,14 @@ import net.minecraft.util.Identifier;
 import net.minecraft.util.Util;
 import net.minecraft.util.registry.Registry;
 import org.spongepowered.asm.mixin.Mixin;
-import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
+import java.lang.reflect.Array;
 import java.util.HashSet;
 import java.util.Map;
+import java.util.Objects;
 import java.util.Random;
 import java.util.function.Function;
 import java.util.stream.Collectors;
@@ -37,15 +39,14 @@ import java.util.stream.Collectors;
 import static eu.codedsakura.setbonuses.SetBonuses.CONFIG;
 
 @Mixin(PlayerEntity.class)
-public class PlayerEntityMixin implements IPlayerEnchantmentToggle {
-    @Shadow public int experienceLevel;
-    @Shadow public int experiencePickUpDelay;
+public class PlayerEntityMixin implements IPlayerEntityDuck {
     private final int enchantmentTickOffset = new Random().nextInt(CONFIG.updateInterval);
     private final int setBonusTickOffset = new Random().nextInt(CONFIG.updateInterval);
     private final HashSet<String> enchantmentEffects = new HashSet<>();
-    public final HashSet<String> disabledEnchantments = new HashSet<>();
+    private final HashSet<String> disabledEnchantments = new HashSet<>();
     private final HashSet<String> setBonusEffects = new HashSet<>();
 
+    private float[] armorBuffs = (float[]) Array.newInstance(Float.TYPE, 3);
     private int lastArmorHash = 0;
 
     @Inject(method = "tick", at = @At("TAIL"))
@@ -57,6 +58,7 @@ public class PlayerEntityMixin implements IPlayerEnchantmentToggle {
             lastArmorHash = newHash;
             updateEnchantEffects();
             updateSetBonuses();
+            self.playerScreenHandler.updateToClient();
         } else if (self.getServer() != null) {
             if (self.getServer().getTicks() % CONFIG.updateInterval == enchantmentTickOffset) {
                 updateEnchantEffects();
@@ -134,10 +136,12 @@ public class PlayerEntityMixin implements IPlayerEnchantmentToggle {
                 .collect(Collectors.groupingBy(Function.identity(), Collectors.counting()));
 
         HashSet<String> currentEffects = new HashSet<>();
+        armorBuffs = new float[] {0, 0, 0};
 
         for (ConfigSetBonus setBonus : CONFIG.setBonuses.list) {
             if (setBonus.material == null || !setBonus.enabled) continue;
-            if (armorMap.getOrDefault(setBonus.material, 0L) < setBonus.getNeededCount()) continue;
+            long pieceCount = armorMap.getOrDefault(setBonus.material, 0L);
+            if (pieceCount < setBonus.getNeededCount()) continue;
 
             for (ConfigSetBonus.Effect effect : setBonus.effects) {
                 int strength = setBonus.getStrength(effect, self, armorMap.get(setBonus.material));
@@ -148,6 +152,10 @@ public class PlayerEntityMixin implements IPlayerEnchantmentToggle {
                         strength, effect.ambient,
                         effect.showParticles, effect.showIcon));
             }
+
+            armorBuffs[0] += setBonus.protection * pieceCount;
+            armorBuffs[1] += setBonus.toughness * pieceCount;
+            armorBuffs[2] += setBonus.knockbackResistance * pieceCount;
         }
 
         for (String prevEffect : setBonusEffects) {
@@ -155,6 +163,10 @@ public class PlayerEntityMixin implements IPlayerEnchantmentToggle {
                 self.removeStatusEffect(Registry.STATUS_EFFECT.get(Identifier.tryParse(prevEffect)));
             }
         }
+
+        Objects.requireNonNull(self.getAttributeInstance(EntityAttributes.GENERIC_ARMOR)).setBaseValue(armorBuffs[0]);
+        Objects.requireNonNull(self.getAttributeInstance(EntityAttributes.GENERIC_ARMOR_TOUGHNESS)).setBaseValue(armorBuffs[1]);
+        Objects.requireNonNull(self.getAttributeInstance(EntityAttributes.GENERIC_KNOCKBACK_RESISTANCE)).setBaseValue(armorBuffs[2]);
 
         setBonusEffects.clear();
         setBonusEffects.addAll(currentEffects);
@@ -180,5 +192,20 @@ public class PlayerEntityMixin implements IPlayerEnchantmentToggle {
     @Override
     public boolean isDisabled(String name) {
         return disabledEnchantments.contains(name);
+    }
+
+    @Override
+    public float getAddProtection() {
+        return armorBuffs[0];
+    }
+
+    @Override
+    public float getAddToughness() {
+        return armorBuffs[1];
+    }
+
+    @Override
+    public float getAddKnockbackResistance() {
+        return armorBuffs[2] / 10f;
     }
 }

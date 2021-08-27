@@ -2,6 +2,9 @@
   "enchantment.set-bonus.resistance": "Resistance",
   "enchantment.set-bonus.night-vision": "Night Vision",
   "enchantment.set-bonus.speed": "Speed",
+  "enchantment.set-bonus.slow-fall": "Slow Fall",
+  "enchantment.set-bonus.jump-boost": "Jump Boost",
+  "enchantment.set-bonus.netherite-haste": "Haste",
   "set-bonus.enchantment.enabled": "enabled!",
   "set-bonus.enchantment.disabled": "disabled!"
 }

@@ -4,8 +4,10 @@
   "package": "eu.codedsakura.setbonuses.mixin",
   "compatibilityLevel": "JAVA_8",
   "mixins": [
+    "LivingEntityMixin",
     "PlayerEntityMixin",
-    "ScreenHandlerMixin"
+    "ScreenHandlerMixin",
+    "ServerPlayerEntityInnerClass1Mixin"
   ],
   "client": [
   ],
