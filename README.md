@@ -22,7 +22,7 @@ Root:
 &gt; `list`: [ConfigSetBonus](#configsetbonus)[] = `[]`
 
 ### ConfigEnchantment
-[source]()
+[Source](https://github.com/CodedSakura/SetBonuses/blob/4099212dca59880abad6d5c3303a7c5542fde271/src/main/java/eu/codedsakura/setbonuses/config/ConfigEnchant.java#L9)
 
 `enabled`: boolean = `true`    
 `id`: string [**Required!**]  
@@ -49,7 +49,7 @@ Root:
 &gt; `showIcon`: boolean = `true`
 
 ### ConfigSetBonus
-[source]()
+[Source](https://github.com/CodedSakura/SetBonuses/blob/4099212dca59880abad6d5c3303a7c5542fde271/src/main/java/eu/codedsakura/setbonuses/config/ConfigSetBonus.java#L7)
 
 `enabled`: boolean = `true`  
 `effect`: [] = `[]` - array of potion effects  
