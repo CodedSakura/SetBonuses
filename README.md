@@ -47,6 +47,8 @@ Root:
 &gt; `ambient`: boolean = `false`
 &gt; `showParticles`: boolean = `false`
 &gt; `showIcon`: boolean = `true`
+`materials`: string[] = `[]` - empty array means any item, otherwise functions as whitelist
+(valid values: `"LEATHER"`, `"CHAIN"`, `"IRON"`, `"GOLD"`, `"DIAMOND"`, `"TURTLE"`, `"NETHERITE"`)
 
 ### ConfigSetBonus
 [Source](https://github.com/CodedSakura/SetBonuses/blob/4099212dca59880abad6d5c3303a7c5542fde271/src/main/java/eu/codedsakura/setbonuses/config/ConfigSetBonus.java#L7)

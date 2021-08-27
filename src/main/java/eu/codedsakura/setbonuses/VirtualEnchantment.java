@@ -5,9 +5,15 @@ import eu.codedsakura.setbonuses.ducks.IPlayerEntityDuck;
 import eu.pb4.polymer.interfaces.VirtualObject;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.item.ArmorItem;
+import net.minecraft.item.ArmorMaterial;
+import net.minecraft.item.ArmorMaterials;
+import net.minecraft.item.ItemStack;
 import net.minecraft.text.MutableText;
 import net.minecraft.text.Text;
 import xyz.nucleoid.packettweaker.PacketContext;
+
+import java.util.Arrays;
 
 public class VirtualEnchantment extends Enchantment implements VirtualObject {
     public final ConfigEnchant enchant;
@@ -62,5 +68,17 @@ public class VirtualEnchantment extends Enchantment implements VirtualObject {
             }
         }
         return text;
+    }
+
+    @Override
+    public boolean isAcceptableItem(ItemStack stack) {
+        if (this.enchant.materials.length > 0) {
+            if (stack.getItem() instanceof ArmorItem) {
+                ArmorMaterial stackMaterial = ((ArmorItem) stack.getItem()).getMaterial();
+                return Arrays.stream(this.enchant.materials).anyMatch(material -> material.compareTo((ArmorMaterials) stackMaterial) == 0);
+            }
+            return false;
+        }
+        return super.isAcceptableItem(stack);
     }
 }

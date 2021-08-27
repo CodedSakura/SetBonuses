@@ -41,7 +41,8 @@ import static eu.codedsakura.setbonuses.SetBonuses.CONFIG;
 @Mixin(PlayerEntity.class)
 public class PlayerEntityMixin implements IPlayerEntityDuck {
     private final int enchantmentTickOffset = new Random().nextInt(CONFIG.updateInterval);
-    private final int setBonusTickOffset = new Random().nextInt(CONFIG.updateInterval);
+    private final int setBonusTickOffset = enchantmentTickOffset;
+//    private final int setBonusTickOffset = new Random().nextInt(CONFIG.updateInterval);
     private final HashSet<String> enchantmentEffects = new HashSet<>();
     private final HashSet<String> disabledEnchantments = new HashSet<>();
     private final HashSet<String> setBonusEffects = new HashSet<>();
@@ -196,16 +197,16 @@ public class PlayerEntityMixin implements IPlayerEntityDuck {
 
     @Override
     public float getAddProtection() {
-        return armorBuffs[0];
+        return armorBuffs[0] / 4f;
     }
 
     @Override
     public float getAddToughness() {
-        return armorBuffs[1];
+        return armorBuffs[1] / 4f;
     }
 
     @Override
     public float getAddKnockbackResistance() {
-        return armorBuffs[2];
+        return armorBuffs[2] / 4f;
     }
 }

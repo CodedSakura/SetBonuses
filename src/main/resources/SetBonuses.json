@@ -77,6 +77,7 @@
         "treasure": true,
         "rarity": "RARE",
         "target": "ARMOR_CHEST",
+        "materials": ["NETHERITE"],
         "effects": [{
           "id": "minecraft:haste"
         }]
@@ -99,7 +100,7 @@
         "partial": "OFF",
         "effects": [{
           "id": "minecraft:haste",
-          "strength": 1
+          "strength": 0
         }]
       }, {
         "material": "LEATHER",

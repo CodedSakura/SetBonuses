@@ -23,7 +23,7 @@ public class ServerPlayerEntityInnerClass1Mixin {
 
     @Inject(method = "updateState(Lnet/minecraft/screen/ScreenHandler;Lnet/minecraft/util/collection/DefaultedList;Lnet/minecraft/item/ItemStack;[I)V", at = @At("HEAD"))
     public void updateState(ScreenHandler handler, DefaultedList<ItemStack> stacks, ItemStack cursorStack, int[] properties, CallbackInfo ci) {
-        if (this.field_29182 != null && handler instanceof PlayerScreenHandler) {
+        if (this.field_29182 != null && handler instanceof PlayerScreenHandler && !field_29182.isCreative()) {
             EquipmentSlot[] slots = new EquipmentSlot[] {EquipmentSlot.HEAD, EquipmentSlot.CHEST, EquipmentSlot.LEGS, EquipmentSlot.FEET};
             for (int i = 5; i < 9; i++) {
                 int finalI = i;
