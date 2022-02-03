@@ -7,13 +7,13 @@ import net.minecraft.item.ArmorMaterial;
 import net.minecraft.item.ArmorMaterials;
 
 public class ConfigSetBonus {
-    @Expose public boolean enabled = true;
-    @Expose public Effect[] effects = new Effect[0];
-    @Expose public float toughness = 0;
-    @Expose public float protection = 0;
-    @Expose public float knockbackResistance = 0;
-    @Expose public Partial partial = Partial.OFF;
-    @Expose public String material;
+    public boolean enabled = true;
+    public Effect[] effects = new Effect[0];
+    public float toughness = 0;
+    public float protection = 0;
+    public float knockbackResistance = 0;
+    public Partial partial = Partial.OFF;
+    public String material;
 
     public enum Partial {
         OFF, REDUCED_3, MISSING_CHEST
