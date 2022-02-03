@@ -130,10 +130,10 @@ public class PlayerEntityMixin implements IPlayerEntityDuck {
 
     private void updateSetBonuses() {
         PlayerEntity self = (PlayerEntity) (Object) this;
-        Map<ArmorMaterial, Long> armorMap = self.getInventory().armor.stream()
+        Map<String, Long> armorMap = self.getInventory().armor.stream()
                 .map(ItemStack::getItem)
                 .filter(item -> item instanceof ArmorItem)
-                .map(item -> ((ArmorItem) item).getMaterial())
+                .map(item -> ((ArmorItem) item).getMaterial().getName().toUpperCase())
                 .collect(Collectors.groupingBy(Function.identity(), Collectors.counting()));
 
         HashSet<String> currentEffects = new HashSet<>();
