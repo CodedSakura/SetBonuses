@@ -1,7 +1,9 @@
 package eu.codedsakura.setbonuses.config;
 
+import com.google.gson.annotations.Expose;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ArmorItem;
+import net.minecraft.item.ArmorMaterial;
 import net.minecraft.item.ArmorMaterials;
 
 public class ConfigSetBonus {
@@ -11,7 +13,7 @@ public class ConfigSetBonus {
     public float protection = 0;
     public float knockbackResistance = 0;
     public Partial partial = Partial.OFF;
-    public ArmorMaterials material;
+    public String material;
 
     public enum Partial {
         OFF, REDUCED_3, MISSING_CHEST
@@ -39,7 +41,7 @@ public class ConfigSetBonus {
                 if (pieces < 3) return -1;
                 if (pieces == 4) return effect.strength;
                 if (player.getInventory().armor.get(1).getItem() instanceof ArmorItem) {
-                    if (((ArmorItem) player.getInventory().armor.get(1).getItem()).getMaterial() == material) {
+                    if (((ArmorItem) player.getInventory().armor.get(1).getItem()).getMaterial().getName().toUpperCase().equals(material)) {
                         return -1;
                     }
                 }
