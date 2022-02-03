@@ -3,7 +3,6 @@ package eu.codedsakura.setbonuses.config;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.EnchantmentTarget;
 import net.minecraft.entity.EquipmentSlot;
-import net.minecraft.item.ArmorMaterials;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.registry.Registry;
 
@@ -22,7 +21,7 @@ public class ConfigEnchant {
     public Power power = new Power();
     public Stacking stacking = Stacking.MAX;
     public Effect[] effects = new Effect[0];
-    public ArmorMaterials[] materials = new ArmorMaterials[0];
+    public String[] materials = new String[0];
 
     public enum Stacking {
         MAX, ADDITIVE, MULTIPLICATIVE

@@ -74,8 +74,8 @@ public class VirtualEnchantment extends Enchantment implements VirtualObject {
     public boolean isAcceptableItem(ItemStack stack) {
         if (this.enchant.materials.length > 0) {
             if (stack.getItem() instanceof ArmorItem) {
-                ArmorMaterial stackMaterial = ((ArmorItem) stack.getItem()).getMaterial();
-                return Arrays.stream(this.enchant.materials).anyMatch(material -> material.compareTo((ArmorMaterials) stackMaterial) == 0);
+                String stackMaterial = ((ArmorItem) stack.getItem()).getMaterial().getName().toUpperCase();
+                return Arrays.stream(this.enchant.materials).anyMatch(material -> material.compareTo(stackMaterial) == 0);
             }
             return false;
         }
