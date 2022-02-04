@@ -7,6 +7,7 @@ import eu.codedsakura.setbonuses.config.ConfigSetBonus;
 import eu.codedsakura.setbonuses.ducks.IPlayerEntityDuck;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.attribute.EntityAttributes;
+import net.minecraft.entity.effect.StatusEffect;
 import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ArmorItem;
@@ -111,9 +112,12 @@ public class PlayerEntityMixin implements IPlayerEntityDuck {
 
                 for (ConfigEnchant.Effect effect : enchant.enchant.effects) {
                     currentEffects.add(effect.id);
-                    self.addStatusEffect(new StatusEffectInstance(
-                            Registry.STATUS_EFFECT.get(Identifier.tryParse(effect.id)), effect.duration + (CONFIG.updateInterval / 2),
-                            effectStrength - 1, effect.ambient, effect.showParticles, effect.showIcon));
+                    StatusEffect status = Registry.STATUS_EFFECT.get(Identifier.tryParse(effect.id));
+                    if(!effect.waitDuration || !self.hasStatusEffect(status)) {
+                        self.addStatusEffect(new StatusEffectInstance(
+                                status, effect.duration + (CONFIG.updateInterval / 2),
+                                effectStrength - 1, effect.ambient, effect.showParticles, effect.showIcon));
+                    }
                 }
             }
         }
@@ -148,10 +152,13 @@ public class PlayerEntityMixin implements IPlayerEntityDuck {
                 int strength = setBonus.getStrength(effect, self, armorMap.get(setBonus.material));
                 if (strength < 0) continue;
                 currentEffects.add(effect.id);
-                self.addStatusEffect(new StatusEffectInstance(
-                        Registry.STATUS_EFFECT.get(Identifier.tryParse(effect.id)), effect.duration,
-                        strength, effect.ambient,
-                        effect.showParticles, effect.showIcon));
+                StatusEffect status = Registry.STATUS_EFFECT.get(Identifier.tryParse(effect.id));
+                if(!effect.waitDuration || !self.hasStatusEffect(status)) {
+                    self.addStatusEffect(new StatusEffectInstance(
+                            status, effect.duration,
+                            strength, effect.ambient,
+                            effect.showParticles, effect.showIcon));
+                }
             }
 
             armorBuffs[0] += setBonus.protection * pieceCount;
