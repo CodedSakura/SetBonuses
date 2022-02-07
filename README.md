@@ -44,6 +44,7 @@ Root:
 `effect`: [] = `[]` - array of potion effects  
 &gt; `id`: string [**Required!**]  
 &gt; `duration`: int = `210`
+&gt; `waitDuration`: boolean = `false` - wether the potion effect needs to run out before being reapplied or not, useful for effects like absorption and health boost
 &gt; `ambient`: boolean = `false`
 &gt; `showParticles`: boolean = `false`
 &gt; `showIcon`: boolean = `true`
@@ -57,6 +58,7 @@ Root:
 `effect`: [] = `[]` - array of potion effects  
 &gt; `id`: string [**Required!**]  
 &gt; `duration`: int = `210`  
+&gt; `waitDuration`: boolean = `false` - wether the potion effect needs to run out before being reapplied or not, useful for effects like absorption and health boost
 &gt; `ambient`: boolean = `false`  
 &gt; `showParticles`: boolean = `false`  
 &gt; `showIcon`: boolean = `true`  
